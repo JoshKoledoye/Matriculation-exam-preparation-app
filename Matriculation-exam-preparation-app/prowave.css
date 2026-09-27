@@ -1,0 +1,129 @@
+/* Reset & General Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f6f4f9;
+  color: #332d3b;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Profile Header Section */
+.profile-header {
+  margin-bottom: 24px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-pic {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f0ebf8;
+  border: 2px solid #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7c3aed;
+  flex-shrink: 0;
+}
+
+.profile-pic svg {
+  width: 26px;
+  height: 26px;
+}
+
+.username {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e1926;
+}
+
+.username .highlight {
+  color: #7c3aed;
+}
+
+/* Mobile First Grid Layout: 2 Columns x 3 Rows */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Individual Grid Card Styling */
+.grid-card {
+  background-color: #ffffff;
+  border: 2px solid #e9e3f5;
+  border-radius: 12px;
+  min-height: 140px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.05);
+  transition: all 0.25s ease;
+}
+
+.grid-card h2 {
+  font-size: 1.1rem;
+  color: #6d28d9;
+}
+
+/* Hover Effect for Desktop/Interactive Devices */
+.grid-card:hover {
+  border-color: #7c3aed;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Tablet & Laptop Media Query: 3 Columns x 2 Rows */
+@media (min-width: 768px) {
+  body {
+    padding: 40px 24px;
+  }
+
+  .profile-header {
+    margin-bottom: 32px;
+  }
+
+  .profile-pic {
+    width: 56px;
+    height: 56px;
+  }
+
+  .profile-pic svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .username {
+    font-size: 1.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .grid-card {
+    min-height: 180px;
+  }
+}
