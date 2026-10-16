@@ -1,24 +1,29 @@
 /* Reset & General Setup */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden; /* Fixes horizontal scroll on mobile */
   background-color: #f6f4f9;
   color: #332d3b;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 24px 16px;
+  font-family: "Manrope", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app { 
+  display: flex; 
+  min-height: 100vh; 
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -65,7 +70,8 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 16px; /* Optimized gap for mobile */
+  width: 100%;
 }
 
 /* Individual Grid Card Styling */
@@ -73,23 +79,24 @@ body {
   background-color: #ffffff;
   border: 2px solid #e9e3f5;
   border-radius: 12px;
-  height: 140px;
-  
+  height: 160px;
+  width: 100%;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(1 24, 58, 237, 0.05);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.05);
   transition: all 0.25s ease;
+  overflow: hidden;
 }
-
 
 .images {
-  
   width: 100%;
   height: 100%;
-  display:flex;
+  object-fit: cover; /* Ensures images stay inside card boundaries */
+  border-radius: 8px;
 }
+
 .grid-card h2 {
   font-size: 1.1rem;
   color: #6d28d9;
@@ -102,12 +109,182 @@ body {
   transform: translateY(-2px);
 }
 
-/* Tablet & Laptop Media Query: 3 Columns x 2 Rows */
-@media (min-width: 768px) {
-  body {
-    padding: 40px 24px;
-  }
+/* ---------- Brand tokens: purple, blue, white ---------- */
+:root {
+  --purple-900: #2b1068;
+  --purple-700: #5b21b6;
+  --purple-600: #6d28d9;
+  --blue-600:   #2563eb;
+  --blue-500:   #3b82f6;
+  --white:      #ffffff;
 
+  --ink:        #1d1a3b;
+  --muted:      #6e6b92;
+  --line:       #e6e2f5;
+  --page:       #f4f2fb;
+  --tint:       rgba(109, 40, 217, .10);
+
+  --sidebar-w:  280px;
+  --rail-w:     76px;
+  --ease:       cubic-bezier(.4, 0, .2, 1);
+  --dur:        .32s;
+}
+
+/* ---------- Sidebar shell ---------- */
+.sidebar {
+  position: relative;
+  z-index: 20;
+  flex: none;
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  box-shadow: 1px 0 0 var(--line), 8px 0 32px rgba(43, 16, 104, .06);
+  transition: width var(--dur) var(--ease);
+}
+
+/* ---------- Header: faceted purple-to-blue banner ---------- */
+.profile {
+  position: relative;
+  height: 178px;
+  overflow: hidden;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--purple-700) 0%, var(--purple-600) 38%, var(--blue-600) 100%);
+  transition: height var(--dur) var(--ease);
+}
+.facets { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.avatar {
+  position: absolute;
+  left: 20px; top: 24px;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(20, 8, 60, .35);
+  transition: width var(--dur) var(--ease), height var(--dur) var(--ease),
+              left var(--dur) var(--ease), top var(--dur) var(--ease);
+}
+.avatar svg { display: block; width: 100%; height: 100%; }
+
+.identity {
+  position: absolute;
+  left: 20px; right: 16px; bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+  transition: opacity .2s var(--ease);
+}
+
+.edit {
+  flex: none;
+  display: grid; place-items: center;
+  width: 32px; height: 32px;
+  border: 0; border-radius: 50%;
+  color: var(--white); background: rgba(255, 255, 255, .16);
+  cursor: pointer;
+  transition: background .2s;
+}
+.edit:hover { background: rgba(255, 255, 255, .28); }
+.edit svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ---------- Navigation ---------- */
+.nav { padding: 8px 12px 20px; }
+
+.group + .group { margin-top: 6px; border-top: 1px solid var(--line); padding-top: 6px; }
+
+.group-title {
+  height: 40px;
+  margin: 0;
+  padding: 0 14px;
+  display: flex; align-items: center;
+  font-size: .85rem; font-weight: 600; color: var(--muted);
+  white-space: nowrap; overflow: hidden;
+  transition: opacity .2s var(--ease);
+}
+
+.item {
+  position: relative;
+  display: flex; align-items: center;
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  border: 0; border-radius: 14px;
+  background: none;
+  font: inherit; font-size: .98rem; font-weight: 600; color: var(--ink);
+  text-align: left; text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.item .icon {
+  flex: none;
+  width: 24px; height: 24px;
+  fill: var(--muted);
+  transition: fill .2s;
+}
+.label {
+  margin-left: 22px;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width var(--dur) var(--ease), opacity .2s var(--ease);
+}
+
+.item:hover { background: var(--tint); }
+.item:hover .icon { fill: var(--purple-600); }
+
+.item[aria-current="page"] {
+  background: var(--tint);
+  color: var(--purple-700);
+}
+.item[aria-current="page"] .icon { fill: var(--purple-600); }
+.item[aria-current="page"]::before {
+  content: "";
+  position: absolute; left: -12px; top: 12px; bottom: 12px;
+  width: 4px; border-radius: 0 4px 4px 0;
+  background: linear-gradient(var(--purple-600), var(--blue-600));
+}
+
+:focus-visible { outline: 3px solid var(--blue-500); outline-offset: 2px; }
+
+/* ---------- Main area ---------- */
+.main { 
+  flex: 1; 
+  min-width: 0; 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex; align-items: center; gap: 14px;
+  height: 64px; padding: 0 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.toggle {
+  display: grid; place-items: center;
+  width: 42px; height: 42px;
+  border: 0; border-radius: 12px;
+  background: var(--tint); color: var(--purple-700);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.toggle:hover { background: rgba(109, 40, 217, .18); }
+.toggle:active { transform: scale(.94); }
+.toggle svg { width: 24px; height: 24px; fill: currentColor; }
+
+.brand { font-weight: 800; font-size: 1.1rem; letter-spacing: .01em; color: var(--purple-700); }
+.brand span { color: var(--blue-600); }
+
+.content { 
+  padding: 24px 16px; 
+  width: 100%; /* Removed max-width: 760px so it spans full screen */
+  flex: 1;
+}
+
+/* Scrim only exists for the mobile drawer */
+.scrim { display: none; }
+
+/* ---------- Desktop: collapse into an icon rail ---------- */
+@media (min-width: 768px) {
   .profile-header {
     margin-bottom: 32px;
   }
@@ -132,7 +309,61 @@ body {
   }
 
   .grid-card {
-    min-height: 180px;
+    height: 200px;
   }
 
+  .content {
+    padding: 32px 32px;
+  }
+
+  .app[data-collapsed="true"] .sidebar { width: var(--rail-w); }
+
+  .app[data-collapsed="true"] .profile { height: 96px; }
+  .app[data-collapsed="true"] .avatar  { width: 44px; height: 44px; left: 16px; top: 26px; }
+  .app[data-collapsed="true"] .identity { opacity: 0; pointer-events: none; }
+
+  .app[data-collapsed="true"] .group-title { opacity: 0; }
+  .app[data-collapsed="true"] .label { max-width: 0; opacity: 0; }
+
+  /* Tooltip appears beside the icon while collapsed */
+  .app[data-collapsed="true"] .item::after {
+    content: attr(data-label);
+    position: absolute; left: calc(100% + 14px); top: 50%;
+    transform: translate(-6px, -50%);
+    padding: 7px 12px;
+    border-radius: 10px;
+    background: var(--purple-900); color: var(--white);
+    font-size: .85rem; font-weight: 600; white-space: nowrap;
+    opacity: 0; pointer-events: none;
+    transition: opacity .15s, transform .15s;
+  }
+  .app[data-collapsed="true"] .item:hover::after,
+  .app[data-collapsed="true"] .item:focus-visible::after {
+    opacity: 1; transform: translate(0, -50%);
+  }
+}
+
+/* ---------- Mobile: slide-in drawer over the content ---------- */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed; inset: 0 auto 0 0;
+    width: min(280px, 80vw);
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform var(--dur) var(--ease);
+  }
+  .app[data-drawer="open"] .sidebar { transform: translateX(0); }
+
+  .scrim {
+    display: block;
+    position: fixed; inset: 0; z-index: 10;
+    background: rgba(29, 26, 59, .5);
+    opacity: 0; pointer-events: none;
+    transition: opacity var(--dur) var(--ease);
+  }
+  .app[data-drawer="open"] .scrim { opacity: 1; pointer-events: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
 }
