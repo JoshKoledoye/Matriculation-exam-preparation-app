@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProWave JAMB Prep - Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+
+  <div class="onboarding-wrapper">
+
+    <!-- STEP 1: INTRO GIF SPLASH -->
+    <section class="step-screen active" id="step-splash">
+      <div class="splash-content">
+        <div class="gif-placeholder">
+          <!-- Replace source with your actual animated intro GIF -->
+          <img src="pics/prolog.jpeg" alt="ProWave Intro Animation" class="intro-gif" >
+        </div>
+        <h1 class="splash-brand">Pro<span>~</span>Wave</h1>
+        <p class="splash-tagline">Engineered for UTME Excellence</p>
+      </div>
+    </section>
+
+    <!-- STEP 2: WELCOME & LET'S GET STARTED -->
+    <section class="step-screen" id="step-welcome">
+      <div class="welcome-card">
+        <img class="studyflow" src="pics/study.jpeg"> 
+        
+
+          
+        
+        
+        <div class="welcome-text">
+          <h2>Master Your UTME Exams</h2>
+          <p>Personalized practice, real-time analytics, and targeted preparation made for any senior secondary school Student</p>
+        </div>
+
+        <button type="button" class="btn-primary" id="btn-start">Let's Get Started</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: ACADEMIC REGISTRATION FORM -->
+    <section class="step-screen" id="step-academic">
+      <div class="form-card">
+        <div class="step-indicator">Step 1 of 2</div>
+        <h2>Academic Profile</h2>
+        <p class="subtitle">Tell us about your JAMB goals so we can customize your study plan.</p>
+
+        <form id="academic-form">
+          <div class="input-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" placeholder="e.g. Israel Okon" required>
+          </div>
+           
+          <div class="input-group">
+            <label for="secondaryschool">Secondary School</label>
+            <input type="text" id="Secondaryschool" placeholder="e.g.Leeland secondary school" required>
+          </div>
+          
+          <div class="input-group">
+            <label for="Current class">Current class</label>
+            <select id="Currentclass" required>
+              <option value="" disabled selected>Select Current class</option>
+              <option value="250">SSS 1 </option>
+              <option value="280">SSS 2 </option>
+              <option value="300">SSS 3 </option>
+              
+            </select>
+          </div>
+
+
+          <div class="input-group">
+            <label for="target-score">Target UTME Score</label>
+            <select id="target-score" required>
+              <option value="" disabled selected>Select target score</option>
+              <option value="250">200 - 249 (Good)</option>
+              <option value="280">250 - 280 (High Merit)</option>
+              <option value="300">290 - 320 (Medicine / Law / Eng)</option>
+              <option value="330">330+ (Top 1% Candidate)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Select Your 4 UTME Subjects</label>
+            <p class="helper-text">Use of English is compulsory. Pick 3 additional subjects.</p>
+            
+            <div class="subject-chips">
+              <span class="chip locked">✓ Use of English</span>
+              <label class="chip"><input type="checkbox" name="subject" value="Mathematics"> Mathematics</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Physics"> Physics</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Chemistry"> Chemistry</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Biology"> Biology</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Economics"> Economics</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Government"> Government</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Literature"> Literature in English</label>
+              <label class="chip"><input type="checkbox" name="subject" value="CRS"> CRS / IRS</label>
+              <label class="chip"><input type="checkbox" name="subject" value="Commerce"> Commerce</label>
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary" id="btn-to-quiz">Continue to Diagnostic</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STEP 4: 1-BY-1 LEARNING STYLE QUESTIONNAIRE -->
+    <section class="step-screen" id="step-quiz">
+      <div class="quiz-card">
+        <div class="quiz-progress">
+          <div class="progress-bar-fill" id="quiz-progress-bar"></div>
+        </div>
+        
+        <div class="quiz-meta">
+          <span id="quiz-step-text">Question 1 of 4</span>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="quiz-question-single active" data-q="1">
+          <h2>How do you perform best under study pressure?</h2>
+          <div class="options-group">
+            <button class="option-btn" data-val="timed">Strict Timed Exams (Mock Speed)</button>
+            <button class="option-btn" data-val="relaxed">Relaxed Mode (Detailed Explanations)</button>
+            <button class="option-btn" data-val="mix">Balanced Blend of Both</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-question-single" data-q="2">
+          <h2>What is your biggest exam challenge?</h2>
+          <div class="options-group">
+            <button class="option-btn" data-val="time">Running out of time during exams</button>
+            <button class="option-btn" data-val="formulas">Forgetting formulas & definitions</button>
+            <button class="option-btn" data-val="understanding">Understanding difficult core topics</button>
+            <button class="option-btn" data-val="panic">Exam anxiety and pressure</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-question-single" data-q="3">
+          <h2>How much daily time can you commit on ProWave?</h2>
+          <div class="options-group">
+            <button class="option-btn" data-val="15">15 Minutes / Day (Quick Sprints)</button>
+            <button class="option-btn" data-val="30">30 Minutes / Day (Steady Progress)</button>
+            <button class="option-btn" data-val="60">1 Hour / Day (Intense Study)</button>
+            <button class="option-btn" data-val="120">2+ Hours / Day (Maximum Mastery)</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="quiz-question-single" data-q="4">
+          <h2>How do you best retain explanations?</h2>
+          <div class="options-group">
+            <button class="option-btn" data-val="visual">Visual Diagrams & Step-by-Step Flowcharts</button>
+            <button class="option-btn" data-val="text">Comprehensive Text Breakdown & Rules</button>
+            <button class="option-btn" data-val="practice">Immediate Practice Question Drills</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STEP 5: COMPLETION / REDIRECT LOADER -->
+    <section class="step-screen" id="step-complete">
+      <div class="loader-card">
+        <div class="spinner"></div>
+        <h2>Setting up your custom portal...</h2>
+        <p>Curating questions and study modes based on your responses.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>
